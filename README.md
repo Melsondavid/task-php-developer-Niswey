@@ -11,6 +11,14 @@ System Requirements
 Git repo : https://github.com/Melsondavid/task-php-developer-Niswey
 sample Upload file: File_to_test is contacts-error.xml and contacts.xml
 
+Use Below cmd id need:
+
+php artisan config:cache
+php artisan route:cache
+php artisan db:wipe
+php artisan migrate --force
+
+
 Ensure you have the following installed on your system:
 PHP >=8.2
 Composer latest version
