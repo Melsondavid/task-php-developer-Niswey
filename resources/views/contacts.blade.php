@@ -358,7 +358,25 @@
                 };
             });
 
-
+            $('#editPhone').on('input', function() {
+                let phoneInput = $(this).val().replace(/\D/g, '');
+                let errorMessage = $(this).next('.error-message');
+                if (!phoneInput.startsWith("90")) {
+                    phoneInput = "90" + phoneInput;
+                }
+                let formattedPhone = "+90";
+                if (phoneInput.length > 2) formattedPhone += " " + phoneInput.substring(2, 5);
+                if (phoneInput.length > 5) formattedPhone += " " + phoneInput.substring(5, 12);
+                $(this).val(formattedPhone);
+                let phonePattern = /^\+90 \d{3} \d{7}$/;
+                if (phonePattern.test(formattedPhone)) {
+                    errorMessage.text('');
+                    $(this).removeClass('is-invalid').addClass('is-valid');
+                } else {
+                    errorMessage.text('Phone number must be in +90 XXX XXXXXXX format.');
+                    $(this).removeClass('is-valid').addClass('is-invalid');
+                }
+            });
         });
     </script>
 @endsection
